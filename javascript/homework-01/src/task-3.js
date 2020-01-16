@@ -1,10 +1,10 @@
 "use strict";
 const ADMIN_PASSWORD = "qwe123";
-let password = prompt("Input your password");
+const PASSWORD = prompt("Input your password");
 let message;
-if (password === null) {
+if (PASSWORD === null) {
   message = "Отменено пользователем!";
-} else if (password === "qwe123") {
+} else if (PASSWORD === "qwe123") {
   message = "Добро пожаловать!";
 } else {
   message = "Доступ запрещен, неверный пароль!";

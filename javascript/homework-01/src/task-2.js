@@ -1,12 +1,12 @@
 "use strict";
-let total = 80;
+const TOTAL = 80;
 let ordered = 20;
 
-WhoIsBigger(total, ordered);
+WhoIsBigger(TOTAL, ordered);
 ordered = 80;
-WhoIsBigger(total, ordered);
+WhoIsBigger(TOTAL, ordered);
 ordered = 130;
-WhoIsBigger(total, ordered);
+WhoIsBigger(TOTAL, ordered);
 
 function WhoIsBigger(total, ordered) {
   if (total >= ordered) {
