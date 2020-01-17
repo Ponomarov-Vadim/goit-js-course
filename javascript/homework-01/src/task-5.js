@@ -1,7 +1,7 @@
 "use strict";
-const COUNTRY_NAME = prompt("What country name?");
-if (COUNTRY_NAME !== null) {
-  switch (COUNTRY_NAME.toLowerCase()) {
+const countryName = prompt("What country name?");
+if (countryName !== null) {
+  switch (countryName.toLowerCase()) {
     case "китай":
       console.log("Доставка в Китай будет стоить 100 кредитов");
       break;
