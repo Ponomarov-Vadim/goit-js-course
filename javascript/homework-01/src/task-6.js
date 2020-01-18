@@ -2,7 +2,7 @@
 let input;
 let total = 0;
 
-while (input !== null) {
+do {
   input = prompt("Enter the number");
 
   if (input !== null) {
@@ -12,5 +12,5 @@ while (input !== null) {
       alert("Было введено не число, попробуйте еще раз");
     }
   }
-}
+} while (input !== null);
 alert(`Общая сумма чисел равна ${total}`);
