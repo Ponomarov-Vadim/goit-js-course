@@ -1,6 +1,6 @@
 "use strict";
 const calculateEngravingPrice = function(message, pricePerWorld) {
-  let worldsArray = message.split(" ");
+  const worldsArray = message.split(" ");
   return worldsArray.length * pricePerWorld;
 };
 
