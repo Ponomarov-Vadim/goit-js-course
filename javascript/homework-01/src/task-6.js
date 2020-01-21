@@ -6,7 +6,7 @@ do {
   input = prompt("Enter the number");
 
   if (input !== null) {
-    if (Number(input).toString() !== "NaN") {
+    if (!Number.isNaN(Number(input))) {
       total += Number.parseInt(input);
     } else {
       alert("Было введено не число, попробуйте еще раз");
