@@ -1,12 +1,11 @@
 "use strict";
 
 const countProps = function(obj) {
-    let count = 0;
-    const keys = Object.keys(obj);
-    for (const key of keys) {
-        count++;
-    }
-    return count;
+  let count = 0;
+  for (const key of Object.keys(obj)) {
+    count++;
+  }
+  return count;
 };
 
 console.log(countProps({}));
