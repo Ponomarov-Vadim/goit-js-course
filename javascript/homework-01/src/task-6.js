@@ -6,8 +6,8 @@ do {
   input = prompt("Enter the number");
 
   if (input !== null) {
-    if (Number(input).toString() !== "NaN") {
-      total += Number.parseInt(input);
+    if (!Number.isNaN(+input)) {
+      total += +input;
     } else {
       alert("Было введено не число, попробуйте еще раз");
     }

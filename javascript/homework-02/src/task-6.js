@@ -1,21 +1,23 @@
 "use strict";
 
-let input = prompt("Enter the number");
+let input;
 const numbers = [];
 let total = 0;
 
-while (input !== null) {
-  if (isNaN(input)) {
-    alert("Было введено не число, попробуйте еще раз");
-  } else {
-    numbers.push(input);
-  }
+do {
   input = prompt("Enter the number");
-}
+  if (input !== null) {
+    if (Number.isNaN(+input)) {
+      alert("Было введено не число, попробуйте еще раз");
+      continue;
+    }
+    numbers.push(+input);
+  }
+} while (input !== null);
 
-if (numbers.length !== 0) {
+if (numbers.length) {
   for (const num of numbers) {
-    total += Number(num);
+    total += num;
   }
 } else {
   alert("Массив чисел пуст!");

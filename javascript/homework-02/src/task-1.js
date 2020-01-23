@@ -1,7 +1,7 @@
 "use strict";
 const logItems = function(array) {
-  for (let index = 0; index < array.length; index++) {
-    const message = `${index + 1} - ${array[index]}`;
+  for (let i = 0; i < array.length; i++) {
+    const message = `${i + 1} - ${array[i]}`;
     console.log(message);
   }
 };
