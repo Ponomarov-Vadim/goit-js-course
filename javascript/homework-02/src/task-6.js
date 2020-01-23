@@ -9,13 +9,13 @@ do {
   if (input !== null) {
     if (Number.isNaN(+input)) {
       alert("Было введено не число, попробуйте еще раз");
-    } else {
-      numbers.push(+input);
+      continue;
     }
+    numbers.push(+input);
   }
 } while (input !== null);
 
-if (numbers.length !== 0) {
+if (numbers.length) {
   for (const num of numbers) {
     total += num;
   }
