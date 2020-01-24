@@ -1,7 +1,7 @@
 "use strict";
 
 const formatString = function(string) {
-  return Number(string.length) > 40 ? string.slice(0, 40) + "..." : string;
+  return string.length > 40 ? `${string.slice(0, 40)}...` : string;
 };
 
 console.log(formatString("Curabitur ligula sapien, tincidunt non."));
