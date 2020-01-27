@@ -21,12 +21,12 @@ class Car {
    *  isOn - заведен ли автомобиль, значения true или false. Изначально false
    *  distance - общий киллометраж, изначально 0
    */
-  constructor(car) {
-    this.speed = 0;
-    this._price = car.price;
-    this.maxSpeed = car.maxSpeed;
-    this.isOn = false;
-    this.distance = 0;
+  constructor({ maxSpeed, price, speed = 0, isOn = false, distance = 0 }) {
+    this.speed = speed;
+    this._price = price;
+    this.maxSpeed = maxSpeed;
+    this.isOn = isOn;
+    this.distance = distance;
   }
 
   /*
@@ -104,7 +104,7 @@ mustang.decelerate(20);
 mustang.drive(1);
 
 Car.getSpecs(mustang);
-// maxSpeed: 200, speed: 30, isOn: false, distance: 130, price: 2000
+// maxSpeed: 200, speed: 30, isOn: true, distance: 130, price: 2000
 
 mustang.turnOff();
 

@@ -1,10 +1,10 @@
 "use strict";
 
 class User {
-  constructor(user) {
-    this.name = user.name;
-    this.age = user.age;
-    this.followers = user.followers;
+  constructor({ name, age, followers }) {
+    this.name = name;
+    this.age = age;
+    this.followers = followers;
   }
 
   getInfo() {
