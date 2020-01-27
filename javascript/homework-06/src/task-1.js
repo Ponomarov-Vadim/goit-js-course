@@ -117,7 +117,7 @@ const getSortedUniqueSkills = users => {
   };
 
   const uniqueSkills = (uniqueSkills, skill) => {
-    if (uniqueSkills.indexOf(skill) === -1) {
+    if (!uniqueSkills.some(element => element === skill)) {
       uniqueSkills.push(skill);
     }
     return uniqueSkills;
