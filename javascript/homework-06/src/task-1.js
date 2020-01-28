@@ -82,7 +82,7 @@ console.log(calculateTotalBalance(users)); // 20916
 
 const getUsersWithFriend = (users, friendName) => {
   return users
-    .filter(user => user.friends.some(friend => friend === friendName))
+    .filter(user => user.friends.includes(friendName))
     .map(user => user.name);
 };
 
@@ -116,20 +116,11 @@ const getSortedUniqueSkills = users => {
     return allSkills;
   };
 
-  const uniqueSkills = (uniqueSkills, skill) => {
-    if (!uniqueSkills.some(element => element === skill)) {
-      uniqueSkills.push(skill);
-    }
-    return uniqueSkills;
-  };
-
-  return users
-    .reduce(allSkills, [])
-    .reduce(uniqueSkills, [])
-    .sort();
+  return new Set(users.reduce(allSkills, []).sort());
 };
 
 console.log(getSortedUniqueSkills(users));
+
 // [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit',
 // 'ex', 'ipsum', 'irure',
 // 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla',
