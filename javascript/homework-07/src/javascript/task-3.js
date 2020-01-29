@@ -17,3 +17,15 @@ const images = [
     alt: "Group of Horses Running"
   }
 ];
+
+const gallery = document.querySelector("#gallery");
+
+const listImages = [];
+
+for (let i = 0; i < images.length; i++) {
+  listImages.push(
+    `<img src="${images[i].url}" alt="${images[i].alt}" height="150" weight="150">`
+  );
+}
+
+gallery.insertAdjacentHTML("afterbegin", listImages);

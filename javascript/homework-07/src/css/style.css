@@ -2,10 +2,30 @@
     border: 3px solid #bdbdbd;
 }
 
-#validation-input:valid {
+#validation-input.valid {
     border-color: #4caf50;
 }
 
-#validation-input:invalid {
+#validation-input.invalid {
     border-color: #f44336;
+}
+
+section {
+    padding: 10px;
+    border-bottom: 2px solid green;
+}
+
+#gallery {
+    display: flex;
+}
+
+#boxes {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#boxes div {
+    margin: 2px;
 }
