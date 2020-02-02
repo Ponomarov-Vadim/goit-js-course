@@ -11,39 +11,76 @@ const closeButton = document.querySelector(
   'button[data-action="close-lightbox"]'
 );
 
-const createImageItem = function(galleryItem) {
-  var img = document.createElement("img");
-  img.classList.add("gallery__image");
-  img.src = galleryItem.preview;
-  img.dataset.source = galleryItem.original;
-  img.alt = galleryItem.description;
-  return img;
-};
+class CreateDocumentElement {
+  constructor(item = undefined) {
+    this._item = item;
+  }
 
-const createLinkItem = function(galleryItem) {
-  var a = document.createElement("a");
-  a.classList.add("gallery__link");
-  a.href = galleryItem.original;
-  return a;
-};
+  get item() {
+    return this._item;
+  }
 
-const createGaleryItems = function(galleryItems) {
-  const imagesList = [];
-  for (let i = 0; i < galleryItems.length; i++) {
+  set item(value) {
+    this._item = value;
+  }
+
+  createImageItem(galleryItem) {
+    var img = document.createElement("img");
+    img.classList.add("gallery__image");
+    img.src = galleryItem.preview;
+    img.dataset.source = galleryItem.original;
+    img.alt = galleryItem.description;
+    this._item = img;
+  }
+
+  createLinkItem(galleryItem) {
+    var a = document.createElement("a");
+    a.classList.add("gallery__link");
+    a.href = galleryItem.original;
+    this._item = a;
+  }
+
+  createGaleryItems(galleryItems) {
+    // const imagesList = [];
+    // for (let i = 0; i < galleryItems.length; i++) {
     var li = document.createElement("li");
     li.classList.add("gallery__item");
 
-    var link = createLinkItem(galleryItems[i]);
-    var img = createImageItem(galleryItems[i]);
+    //   li.appendChild(
+    //     CreateDocumentElement.createLinkItem(galleryItems[i]).appendChild(
+    //       CreateDocumentElement.createImageItem(galleryItems[i])
+    //     )
+    //  );
 
-    link.appendChild(img);
-    li.appendChild(link);
-    imagesList.push(li);
+    //   imagesList.push(li);
+    // }
+    this._item = li;
   }
-  return imagesList;
-};
 
-jsGalery.append(...createGaleryItems(galleryItems));
+  addChild(child) {
+    this._item.appendChild(child);
+    return this._item;
+  }
+}
+const listItems = [];
+for (const galleryItem of galleryItems) {
+  const img = new CreateDocumentElement();
+  const link = new CreateDocumentElement();
+  const li = new CreateDocumentElement();
+
+  link.createLinkItem(galleryItem);
+  img.createImageItem(galleryItem);
+  li.createGaleryItems();
+
+  link.addChild(img._item);
+  li.addChild(link._item);
+
+  listItems.push(li._item);
+
+  console.log();
+}
+jsGalery.append(...listItems);
+
 // -----------------------------------------
 const openModal = function(e) {
   lightboxDiv.classList.add("is-open");
@@ -91,5 +128,5 @@ const doAnythin = function(e) {
   }
 };
 
-// lightboxDiv.addEventListener("click", closeModal);
+lightboxDiv.addEventListener("click", closeModal);
 document.addEventListener("keydown", doAnythin.bind(galleryItems));
