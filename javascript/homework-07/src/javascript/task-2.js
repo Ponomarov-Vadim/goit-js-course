@@ -11,12 +11,12 @@ const ingredients = [
 
 const ingredientsList = document.querySelector("#ingredients");
 
-const fragment = new DocumentFragment();
+const fragment = [];
 
 for (let i = 0; i < ingredients.length; i++) {
   var li = document.createElement("li");
   li.textContent = ingredients[i];
-  fragment.append(li);
+  fragment.push(li);
 }
 
-ingredientsList.appendChild(fragment);
+ingredientsList.append(...fragment);
