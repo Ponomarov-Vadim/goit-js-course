@@ -28,28 +28,27 @@ const createLinkItem = function(galleryItem) {
 };
 
 const createGaleryItems = function(galleryItems) {
-  const imagesList = new DocumentFragment();
+  const imagesList = [];
   for (let i = 0; i < galleryItems.length; i++) {
     var li = document.createElement("li");
     li.classList.add("gallery__item");
 
-    li.appendChild(
-      createLinkItem(galleryItems[i]).appendChild(
-        createImageItem(galleryItems[i])
-      )
-    );
+    var link = createLinkItem(galleryItems[i]);
+    var img = createImageItem(galleryItems[i]);
 
-    imagesList.appendChild(li);
+    link.appendChild(img);
+    li.appendChild(link);
+    imagesList.push(li);
   }
   return imagesList;
 };
 
-jsGalery.appendChild(createGaleryItems(galleryItems));
+jsGalery.append(...createGaleryItems(galleryItems));
 // -----------------------------------------
 const openModal = function(e) {
   lightboxDiv.classList.add("is-open");
   lightboxImage.src = e.target.dataset.source;
-  lightboxDiv.focus();
+  e.preventDefault();
 };
 
 jsGalery.addEventListener("click", openModal);
