@@ -9,14 +9,16 @@ const btnDecrement = document.querySelector(
 );
 const span = document.querySelector("#value");
 
-const counter = {
-  increment() {
-    span.textContent = ++span.textContent;
-  },
-  decrement() {
-    span.textContent = --span.textContent;
-  }
+let counter = 0;
+
+const increment = function() {
+  span.textContent = ++span.textContent;
+  counter = span.textContent;
+};
+const decrement = function() {
+  span.textContent = --span.textContent;
+  counter = span.textContent;
 };
 
-btnIncrement.addEventListener("click", counter.increment);
-btnDecrement.addEventListener("click", counter.decrement);
+btnIncrement.addEventListener("click", increment);
+btnDecrement.addEventListener("click", decrement);
