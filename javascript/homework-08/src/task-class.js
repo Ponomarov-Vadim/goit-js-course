@@ -3,83 +3,47 @@ import galleryItems from "./gallery-items.js";
 
 const jsGalery = document.querySelector(".js-gallery");
 
-const lightboxImage = document.querySelector("img.lightbox__image");
-
-const lightboxDiv = document.querySelector("div.lightbox");
-
-const closeButton = document.querySelector(
-  'button[data-action="close-lightbox"]'
-);
-
-class CreateDocumentElement {
-  constructor(item = undefined) {
-    this._item = item;
+class Element {
+  constructor(galleryItem) {
+    this._galleryItem = galleryItem;
   }
 
-  get item() {
-    return this._item;
-  }
-
-  set item(value) {
-    this._item = value;
-  }
-
-  createImageItem(galleryItem) {
+  createImageItem() {
     var img = document.createElement("img");
     img.classList.add("gallery__image");
-    img.src = galleryItem.preview;
-    img.dataset.source = galleryItem.original;
-    img.alt = galleryItem.description;
-    this._item = img;
+    img.src = this._galleryItem.preview;
+    img.dataset.source = this._galleryItem.original;
+    img.alt = this._galleryItem.description;
+    return img;
   }
 
-  createLinkItem(galleryItem) {
+  createLinkItem() {
     var a = document.createElement("a");
     a.classList.add("gallery__link");
-    a.href = galleryItem.original;
-    this._item = a;
+    a.href = this._galleryItem.original;
+    return a;
   }
 
-  createGaleryItems(galleryItems) {
-    // const imagesList = [];
-    // for (let i = 0; i < galleryItems.length; i++) {
+  createGaleryItems() {
     var li = document.createElement("li");
     li.classList.add("gallery__item");
-
-    //   li.appendChild(
-    //     CreateDocumentElement.createLinkItem(galleryItems[i]).appendChild(
-    //       CreateDocumentElement.createImageItem(galleryItems[i])
-    //     )
-    //  );
-
-    //   imagesList.push(li);
-    // }
-    this._item = li;
+    return li;
   }
 
-  addChild(child) {
-    this._item.appendChild(child);
-    return this._item;
+  createElement() {
+    var link = this.createLinkItem();
+    var li = this.createGaleryItems();
+    link.appendChild(this.createImageItem());
+    li.appendChild(link);
+    return li;
   }
 }
-const listItems = [];
-for (const galleryItem of galleryItems) {
-  const img = new CreateDocumentElement();
-  const link = new CreateDocumentElement();
-  const li = new CreateDocumentElement();
 
-  link.createLinkItem(galleryItem);
-  img.createImageItem(galleryItem);
-  li.createGaleryItems();
-
-  link.addChild(img._item);
-  li.addChild(link._item);
-
-  listItems.push(li._item);
-
-  console.log();
-}
-jsGalery.append(...listItems);
+jsGalery.append(
+  ...galleryItems.map(item => {
+    return new Element(item).createElement();
+  })
+);
 
 // -----------------------------------------
 const openModal = function(e) {
@@ -90,7 +54,16 @@ const openModal = function(e) {
 
 jsGalery.addEventListener("click", openModal);
 // -----------------------------------------
-const closeModal = function() {
+
+const lightboxImage = document.querySelector("img.lightbox__image");
+
+const lightboxDiv = document.querySelector("div.lightbox");
+
+const closeButton = document.querySelector(
+  'button[data-action="close-lightbox"]'
+);
+
+const closeModal = function(e) {
   lightboxDiv.classList.remove("is-open");
   lightboxImage.src = "";
 };
@@ -128,5 +101,4 @@ const doAnythin = function(e) {
   }
 };
 
-lightboxDiv.addEventListener("click", closeModal);
 document.addEventListener("keydown", doAnythin.bind(galleryItems));

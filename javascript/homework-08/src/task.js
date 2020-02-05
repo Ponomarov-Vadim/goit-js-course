@@ -91,5 +91,4 @@ const doAnythin = function(e) {
   }
 };
 
-// lightboxDiv.addEventListener("click", closeModal);
 document.addEventListener("keydown", doAnythin.bind(galleryItems));
