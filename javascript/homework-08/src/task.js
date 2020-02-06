@@ -1,49 +1,17 @@
 "use strict";
+
 import galleryItems from "./gallery-items.js";
+
+import Element from "./task-class.js";
 
 const jsGalery = document.querySelector(".js-gallery");
 
-const lightboxImage = document.querySelector("img.lightbox__image");
-
-const lightboxDiv = document.querySelector("div.lightbox");
-
-const closeButton = document.querySelector(
-  'button[data-action="close-lightbox"]'
+jsGalery.append(
+  ...galleryItems.map(item => {
+    return new Element(item).createElement();
+  })
 );
 
-const createImageItem = function(galleryItem) {
-  var img = document.createElement("img");
-  img.classList.add("gallery__image");
-  img.src = galleryItem.preview;
-  img.dataset.source = galleryItem.original;
-  img.alt = galleryItem.description;
-  return img;
-};
-
-const createLinkItem = function(galleryItem) {
-  var a = document.createElement("a");
-  a.classList.add("gallery__link");
-  a.href = galleryItem.original;
-  return a;
-};
-
-const createGaleryItems = function(galleryItems) {
-  const imagesList = [];
-  for (let i = 0; i < galleryItems.length; i++) {
-    var li = document.createElement("li");
-    li.classList.add("gallery__item");
-
-    var link = createLinkItem(galleryItems[i]);
-    var img = createImageItem(galleryItems[i]);
-
-    link.appendChild(img);
-    li.appendChild(link);
-    imagesList.push(li);
-  }
-  return imagesList;
-};
-
-jsGalery.append(...createGaleryItems(galleryItems));
 // -----------------------------------------
 const openModal = function(e) {
   lightboxDiv.classList.add("is-open");
@@ -53,7 +21,18 @@ const openModal = function(e) {
 
 jsGalery.addEventListener("click", openModal);
 // -----------------------------------------
-const closeModal = function() {
+
+const lightboxImage = document.querySelector("img.lightbox__image");
+
+const lightboxDiv = document.querySelector("div.lightbox");
+
+const closeButton = document.querySelector(
+  'button[data-action="close-lightbox"]'
+);
+
+const lightboxOverlay = document.querySelector("div.lightbox__content");
+
+const closeModal = function(e) {
   lightboxDiv.classList.remove("is-open");
   lightboxImage.src = "";
 };
@@ -92,3 +71,11 @@ const doAnythin = function(e) {
 };
 
 document.addEventListener("keydown", doAnythin.bind(galleryItems));
+
+const overlayClick = function(e) {
+  if (e.target.classList.value === "lightbox__content") {
+    closeModal(e);
+  }
+};
+
+lightboxOverlay.addEventListener("click", overlayClick);
