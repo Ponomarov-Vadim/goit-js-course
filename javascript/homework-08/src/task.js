@@ -73,7 +73,7 @@ const doAnythin = function(e) {
 document.addEventListener("keydown", doAnythin.bind(galleryItems));
 
 const overlayClick = function(e) {
-  if (e.target.classList.value === "lightbox__content") {
+  if (e.target === e.currentTarget) {
     closeModal(e);
   }
 };
