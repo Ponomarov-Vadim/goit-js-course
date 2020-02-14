@@ -1,6 +1,6 @@
 # Webpack starter kit
 
-[Живая страница](https://luxplanjay.github.io/webpack-starter-kit/) после деплоя
+[Живая страница](https://ponomarov-vadim.github.io/goit-js-course/) после деплоя
 через `npm run deploy`.
 
 ## Использование
