@@ -25,7 +25,6 @@ const changeThameColor = function(newTheme, oldTheme) {
 };
 
 const changeCheckBox = function(e) {
-  console.log(e.target.checked);
   if (e.target.checked) {
     storage.save('theme', Theme.DARK);
     changeThameColor(Theme.DARK, Theme.LIGHT);
