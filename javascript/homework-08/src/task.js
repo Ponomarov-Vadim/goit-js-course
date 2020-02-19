@@ -65,7 +65,6 @@ const doAnythin = function(e) {
     }
     if (e.code === "ArrowLeft" || e.code === "ArrowRight") {
       changeImage(lightboxImage.src, e.code);
-      return;
     }
   }
 };

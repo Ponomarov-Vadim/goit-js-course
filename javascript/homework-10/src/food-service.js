@@ -28,10 +28,10 @@ const changeCheckBox = function(e) {
   if (e.target.checked) {
     storage.save('theme', Theme.DARK);
     changeThameColor(Theme.DARK, Theme.LIGHT);
-  } else {
-    storage.save('theme', Theme.LIGHT);
-    changeThameColor(Theme.LIGHT, Theme.DARK);
+    return;
   }
+  storage.save('theme', Theme.LIGHT);
+  changeThameColor(Theme.LIGHT, Theme.DARK);
 };
 const whatIsTheme = function(e) {
   if (storage.load('theme') === Theme.DARK) {
