@@ -26,14 +26,14 @@ function showCountryList(countryList) {
     );
     section.append(ul);
     return;
-  } else if (countryList.length === 1) {
+  }
+  if (countryList.length === 1) {
     showCountryInfo(countryList[0]);
     return;
-  } else {
-    error({
-      text: 'Too many matches found. Please enter a more specific query!',
-    });
   }
+  error({
+    text: 'Too many matches found. Please enter a more specific query!',
+  });
 }
 
 const nfunc = debounce(e => {
