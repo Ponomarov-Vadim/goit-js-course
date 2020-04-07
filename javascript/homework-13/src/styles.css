@@ -29,7 +29,7 @@ body {
 
 .gallery li {
   padding: 20px;
-  border: 3px solid blue;
+  border: 2px solid black;
   border-radius: 20px;
   margin-bottom: 20px;
 
@@ -39,4 +39,8 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.photo-card p {
+  padding: 4px;
 }
