@@ -35,7 +35,7 @@ const showImages = function (e) {
           '',
         ),
       );
-      //------------------------------
+
       if (perPage > 1) {
         window.scrollTo({
           top: window.scrollY - 60,
@@ -49,7 +49,6 @@ const showImages = function (e) {
           });
         }, 500);
       }
-      //---------------------------
     });
 
   input.value = '';
