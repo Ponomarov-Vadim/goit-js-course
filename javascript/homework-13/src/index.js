@@ -28,7 +28,6 @@ const showImages = function (e) {
   axios
     .get(`${BASE_URL}?key=${KEY}&q=${searchWord}&per_page=12&page=${perPage}`)
     .then(res => {
-      console.dir(res.data.hits);
       gallery.insertAdjacentHTML(
         'beforeend',
         res.data.hits.reduce(
@@ -36,21 +35,29 @@ const showImages = function (e) {
           '',
         ),
       );
+      //------------------------------
       if (perPage > 1) {
+        window.scrollTo({
+          top: window.scrollY - 60,
+          left: 0,
+        });
         setTimeout(() => {
           window.scrollTo({
-            top: window.scrollY + window.innerHeight - 50,
+            top: window.scrollY + window.innerHeight,
             left: 0,
             behavior: 'smooth',
           });
         }, 500);
       }
+      //---------------------------
     });
 
   input.value = '';
   loadButton.style.display = 'inline';
 };
+
 let modal;
+
 const showModal = function (e) {
   if (e.target.tagName === 'IMG') {
     modal = basicLightbox.create(
@@ -63,19 +70,11 @@ const showModal = function (e) {
   }
 };
 
-const closeModal = function (e) {
+const closeModal = function () {
   if (modal) {
     modal.close();
   }
 };
-
-const showPhotoCard = function (e) {
-  if (e.target.tagName === 'IMG') {
-    console.log(e.target.dataset.source);
-  }
-};
-
-window.addEventListener('load', showPhotoCard);
 
 gallery.addEventListener('click', showModal);
 form.addEventListener('submit', showImages);

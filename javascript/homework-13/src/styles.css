@@ -28,7 +28,7 @@ body {
 }
 
 .gallery li {
-  padding: 20px;
+  padding: 26px;
   border: 2px solid black;
   border-radius: 20px;
   margin-bottom: 20px;
@@ -41,6 +41,10 @@ body {
   justify-content: space-around;
 }
 
+.photo-card {
+  min-width: 340px;
+}
+
 .photo-card p {
-  padding: 4px;
+  padding: 6px;
 }
